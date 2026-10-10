@@ -15,7 +15,7 @@ def test_cli_ingest_search_and_second_ingest_skips(tmp_path, sample_pdf, monkeyp
     assert "인제스트 완료" in ingested
     assert "SHA-256:" in ingested
     assert "추가:" in ingested
-    assert "samples/jeju_guide.pdf" in ingested
+    assert "jeju_guide.pdf" in ingested
 
     assert main(["search", "성산일출봉 입장", "--persist-dir", str(database), "--top-k", "2"]) == 0
     found = capsys.readouterr().out

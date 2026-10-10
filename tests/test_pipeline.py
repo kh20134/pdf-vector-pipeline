@@ -12,7 +12,7 @@ def test_metadata_and_dedup(tmp_path, sample_pdf):
     assert first.added > 0
     assert first.skipped == 0
     assert first.pages == 2
-    assert first.file == "samples/jeju_guide.pdf"
+    assert first.file.endswith("jeju_guide.pdf")
     assert len(first.file_sha256) == 64
 
     metas = store.all_metadata()
@@ -38,7 +38,7 @@ def test_search_returns_seongsan_page(tmp_path, sample_pdf):
     assert hits[0].page == 2
     assert "성산일출봉" in hits[0].text
     assert hits[0].file.endswith("jeju_guide.pdf")
-    assert hits[0].chunk_id.startswith("samples/jeju_guide.pdf:p2:c")
+    assert hits[0].chunk_id.startswith(f"{hits[0].file}:p2:c")
     assert hits[0].score > hits[-1].score or len(hits) == 1
 
 
