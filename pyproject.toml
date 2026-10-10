@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-vector-pipeline"
+version = "0.1.0"
+description = "PDF를 한국어 청크로 나누어 임베딩하고 Chroma에서 검색합니다."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "kh20134" }]
+keywords = ["pdf", "embeddings", "chroma", "korean", "rag"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "pymupdf>=1.24",
+  "pypdf>=5",
+  "chromadb>=1.0,<2",
+]
+
+[project.optional-dependencies]
+local = ["sentence-transformers>=3"]
+openai = ["openai>=1.40"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+pdfvec = "pdfvec.cli:app"
+ingest = "pdfvec.cli:ingest_entry"
+search = "pdfvec.cli:search_entry"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "src"]
+addopts = "-q --tb=short"
