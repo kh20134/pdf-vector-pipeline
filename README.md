@@ -23,6 +23,8 @@ flowchart LR
 
 ![PDF 벡터 파이프라인 구조](docs/architecture.svg)
 
+같은 그림의 PNG 렌더(Noto Sans CJK)는 [docs/architecture.png](docs/architecture.png)입니다.
+
 ## 설치
 
 Python 3.11 또는 3.12가 필요합니다.
